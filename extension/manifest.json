@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "GeoGuessr Reserved Seat Probe",
+  "version": "0.3.2",
+  "description": "予約席数を保存すると、主催者のPartyロビーでゲストの席を自動作成・接続する実験用ツールです。",
+  "permissions": [
+    "activeTab",
+    "cookies",
+    "scripting",
+    "storage",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "https://www.geoguessr.com/*"
+  ],
+  "incognito": "split",
+  "minimum_chrome_version": "116",
+  "content_scripts": [{
+    "matches": ["https://www.geoguessr.com/*"],
+    "js": ["reservation-page.js"],
+    "run_at": "document_idle"
+  }],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "GeoGuessr 予備ゲスト検証",
+    "default_popup": "popup.html"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm1BRBKG/2Rd8JQmvY583DwsoHr+S/aM6XJoiBg1VLB4TLUmFosqqf1Y7Hmqq/eHaSyzaNOCfyxz2JpgN4ED7sEOVQBv/9lqptYUMJZTcTkXJX7I7E4f/hcRY6HV+dVz5O7eiOVYF7iixqikrdk2YyvM8DHRa+hlRUB7z1SQ0Yy+tpNGSabBOq673RSsWYy6RNmcYuBwmwO+4uw97AdsbSn5Ay6bpOZg9Zwbfy+VzWoktp9oNV30HkUxf8MThNqg/rJQ4zktjuvoSxkoeSB2qsw+9SaMVsUREw6KuOKH0RXbgNfkZIy6R09H/n6kNg4wY6oVXMJwapEqSBeRN7S8D6QIDAQAB"
+}
