@@ -1,0 +1,12 @@
+node_modules/
+
+# Generated per-user Native Messaging launcher and manifest.
+/native-messaging/
+
+# Distribution archives belong in release assets.
+/*.zip
+
+# Local live-test reports and screenshots.
+/*probe-*.json
+/team-duel-handoff-*.json
+/*-proof.jpg
