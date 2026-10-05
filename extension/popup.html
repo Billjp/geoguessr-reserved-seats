@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>予備ゲスト検証</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Partyの予備ゲスト</h1>
+  <p class="badge">実験版 · リーダー承認とピン複製は未実装</p>
+  <p>予約席数を保存すると、主催者のPartyロビーで自動的に席を確保します。</p>
+  <output id="status" aria-live="polite">主催者のPartyロビーで開いてください。</output>
+  <h2>主催者：予備席を自動作成</h2>
+  <label for="seat-count">予約席数</label>
+  <input id="seat-count" type="number" min="0" max="100" step="1" value="0">
+  <div class="row"><button id="save">予約席数を保存</button><button id="refresh" class="secondary">状態を更新</button></div>
+  <p class="note">0で停止。数は自由に設定できますが、Partyの定員と現在の参加人数で確保できる数が決まります。接続中の予約席は回答しません。</p>
+  <p id="reservation-summary" aria-live="polite"></p>
+  <details><summary>初回セットアップ</summary><p>最初の1回だけ、Edgeはsetup-auto.cmd、Chromeはsetup-chrome.cmdを実行し、使うブラウザーへこの拡張を読み込んでください。以降は起動・接続・Partyコード入力を自動で行います。</p></details>
+  <div id="seats" aria-live="polite"></div>
+  <h2>途中参加者へ渡す</h2>
+  <p>予備席の「引き継ぐ」を押すと裏の接続を閉じてデータを出力します。コピーして参加者に渡してください。その予備ゲストを操作できるデータです。</p>
+  <textarea id="outgoing" aria-label="ゲスト引き継ぎデータ" readonly spellcheck="false" placeholder="引き継ぐ予備席を選ぶと表示します"></textarea>
+  <details>
+    <summary>手動で作成したゲストを渡す</summary>
+    <p>専用ゲストプロファイルのParty／Duelタブで使用します。通常アカウントでは実行できません。</p>
+    <div class="row"><button id="inspect" class="secondary">ゲストを確認</button><button id="export" class="secondary">手動ゲストを出力</button></div>
+    <p class="note">コピー後、このゲストのゲームタブを閉じてください。</p>
+  </details>
+  <hr>
+  <h2>受け取る側</h2>
+  <p>通常アカウントとゲストの両方が未ログインの専用プロファイルで、GeoGuessrを開いてください。</p>
+  <textarea id="incoming" aria-label="受け取った引き継ぎデータ" spellcheck="false" placeholder="検証相手から受け取ったデータを貼り付け"></textarea>
+  <label><input id="consent" type="checkbox">使い捨てゲストの引き継ぎで、元のゲームタブは閉じています</label>
+  <button id="import" disabled>同じゲストとして再参加を試す</button>
+  <p class="note">引き継ぎデータは元の出力から10分以内に使ってください。期限切れや停止操作で、渡した操作権は取り消せません。保存するのは予約席数だけです。ブラウザーを終了すると、未使用ゲストの接続・ログイン状態は失われます。</p>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
