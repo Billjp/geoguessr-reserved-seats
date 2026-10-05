@@ -1,0 +1,9 @@
+{
+  "name": "geoguessr-party-join-probe",
+  "version": "0.3.2",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.3" },
+  "scripts": { "test": "node --test tests/probe.test.mjs tests/ws-presence.test.mjs tests/companion.test.mjs tests/native-host.test.mjs extension/handoff.test.mjs extension/background.test.mjs extension/host-automation.test.mjs extension/native-client.test.mjs extension/party-context.test.mjs extension/reservation-page.test.mjs" },
+  "dependencies": { "ws": "8.22.0" }
+}
